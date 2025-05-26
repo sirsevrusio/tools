@@ -1,4 +1,5 @@
 from sympy import symbols, diff, solve, lambdify
+import math
 
 def nth_term(start: int, diff: int, n: int) -> int:
     """Returns the n-th term of an arithmetic series."""
@@ -52,7 +53,16 @@ def get_crit(expr):
         results.append((point.evalf(), nature))
     return results
 
+def nPr(n:int, r:int) -> int:
+    """Calculate number of permutations (nPr) — arrangements of r items from n."""
+    num = math.factorial(n)
+    if not(0 <= r <= n):
+        raise ValueError("r must lie between 0 and {}".format(n))
+    den = math.factorial(n - r)
+    return num // den
+
 if __name__ == "__main__":
     #print(nth_term(1, 20, 98))
     #print(nth_sum(1, 1, 10))
-    print(get_crit("3 - 6 * 2 - 9 + 15"))
+    #print(get_crit("3 - 6 * 2 - 9 + 15"))
+    print(nPr(5, 5))
